@@ -34,4 +34,5 @@ int wmain(int argc, wchar_t** argv) {
         if (dir_entry.path() == path) continue;
         print_console(dir_entry.path().native());
     }
+    return 0;
 }
