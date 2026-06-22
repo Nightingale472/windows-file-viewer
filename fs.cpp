@@ -1,9 +1,10 @@
 #include <Windows.h>
+#include <string>
 #include <filesystem>
 
 using dir_it = std::filesystem::directory_iterator;
 
-void print_console(const std::wstring_view& str) {
+void print_console(const std::wstring_view str) {
     WriteConsoleW(
             GetStdHandle(STD_OUTPUT_HANDLE), 
             str.data(), 
@@ -15,9 +16,11 @@ void print_console(const std::wstring_view& str) {
 }
 
 int wmain() {
-    std::filesystem::path path {L"C:\\Users\\user1\\Documents\\Warcraft III"};
+    std::wstring path_name = L"C:\\Users\\user1\\Documents\\Warcraft III";
+    std::filesystem::path path {path_name};
     for (const auto& dir_entry: dir_it{path}) {
         if (dir_entry.path() == path) continue;
         print_console(dir_entry.path().native());
     }
+    return 0;
 }
